@@ -25,10 +25,6 @@ poi.fin='P';
 mid.fin='M';
 ring.fin='R';
 pinky.fin='Y';
-
-
-
-  
 }
 
 int keyCheck(int aRead){
@@ -50,27 +46,27 @@ void printer(){
   if(thumb.fsr>40){
     Serial.print(thumb.key,DEC);
     Serial.print(thumb.fin);
-    Serial.print(" - ");
+    Serial.print("  ");
   }
     if(poi.fsr>40){
     Serial.print(poi.key,DEC);
     Serial.print(poi.fin);
-    Serial.print(" - ");
+    Serial.print("  ");
   }
     if(mid.fsr>40){
     Serial.print(mid.key,DEC);
     Serial.print(mid.fin);
-    Serial.print(" - ");
+    Serial.print("  ");
   }
     if(ring.fsr>40){
     Serial.print(ring.key,DEC);
     Serial.print(ring.fin);
-    Serial.print(" - ");
+    Serial.print("  ");
   }
     if(pinky.fsr>40){
     Serial.print(pinky.key,DEC);
     Serial.print(pinky.fin);
-    Serial.print(" - ");
+    Serial.print("  ");
   }
   Serial.print("\n");
   delay(1000);
@@ -100,6 +96,8 @@ void loop() {
   
   
   int keyRead;
+
+  int count = 10;
   for (int i = 0; i < 5; i++) {
     int sum = 0;
     switch (i) {
@@ -108,12 +106,12 @@ void loop() {
         digitalWrite(S1, HIGH);
         digitalWrite(S0, HIGH);
 
-        for(int j=0;j<5;j++){
+        for(int j=0;j<count;j++){
           keyRead = analogRead(0);
           sum+=keyRead;
         }
         
-        thumb.key = keyCheck(sum/5);
+        thumb.key = keyCheck(sum/count);
         break;
       case 1://12  POINTER
         digitalWrite(S3, HIGH);
@@ -121,11 +119,11 @@ void loop() {
         digitalWrite(S1, LOW);
         digitalWrite(S0, LOW);
 
-        for(int j=0;j<5;j++){
+        for(int j=0;j<count;j++){
           keyRead = analogRead(0);
           sum+=keyRead;
         }
-        poi.key = keyCheck(sum/5);
+        poi.key = keyCheck(sum/count);
 
 
         break;
@@ -135,11 +133,11 @@ void loop() {
         digitalWrite(S1, LOW);
         digitalWrite(S0, LOW);
 
-        for(int j=0;j<5;j++){
+        for(int j=0;j<count;j++){
           keyRead = analogRead(0);
           sum+=keyRead;
         }
-        mid.key = keyCheck(sum/5);
+        mid.key = keyCheck(sum/count);
 
         break;
       case 3://4  RING
@@ -148,11 +146,11 @@ void loop() {
         digitalWrite(S1, LOW);
         digitalWrite(S0, LOW);
 
-        for(int j=0;j<5;j++){
+        for(int j=0;j<count;j++){
           keyRead = analogRead(0);
           sum+=keyRead;
         }
-        ring.key = keyCheck(sum/5);
+        ring.key = keyCheck(sum/count);
 
 
         break;
@@ -162,11 +160,11 @@ void loop() {
         digitalWrite(S1, LOW);
         digitalWrite(S0, LOW);
 
-        for(int j=0;j<5;j++){
+        for(int j=0;j<count;j++){
           keyRead = analogRead(0);
           sum+=keyRead;
         }
-        pinky.key = keyCheck(sum/5);
+        pinky.key = keyCheck(sum/count);
 
 
         break;
